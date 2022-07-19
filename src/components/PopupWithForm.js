@@ -124,18 +124,6 @@ function PopupWithForm({ name, title }) {
         </div>
       </div>
 
-      <div className={`modal modal_type_${name}`}>
-        <div className="modal__container modal__container_type_preview">
-          <button
-            type="button"
-            className="modal__close-btn modal__close-btn_preview"
-            aria-label="close-button"
-          ></button>
-          <img className="modal__popup-image" src="#" alt="popup image" />
-          <h2 className="modal__popup-name"></h2>
-        </div>
-      </div>
-
       <template id="card-template">
         <article className="card">
           <img className="card__image" src="#" alt="a picture of a valley" />

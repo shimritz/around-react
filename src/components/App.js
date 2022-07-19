@@ -2,6 +2,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
 
         <Main />
         <PopupWithForm />
+        {/* <ImagePopup /> */}
         <div className="modal modal_type_profile">
           <div className="modal__container">
             <button
@@ -132,7 +134,7 @@ function App() {
           </div>
         </div>
 
-        <div className="modal modal_type_preview">
+        {/* <div className="modal modal_type_preview">
           <div className="modal__container modal__container_type_preview">
             <button
               type="button"
@@ -142,7 +144,7 @@ function App() {
             <img className="modal__popup-image" src="#" alt="popup image" />
             <h2 className="modal__popup-name"></h2>
           </div>
-        </div>
+        </div> */}
 
         <template id="card-template">
           <article className="card">
