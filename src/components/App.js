@@ -1,6 +1,7 @@
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
+import PopupWithForm from "./PopupWithForm";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
         <Header />
 
         <Main />
-        <Footer />
+        <PopupWithForm />
         <div className="modal modal_type_profile">
           <div className="modal__container">
             <button
@@ -164,6 +165,7 @@ function App() {
             </div>
           </article>
         </template>
+        <Footer />
       </div>
     </>
   );
