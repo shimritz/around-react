@@ -33,7 +33,7 @@ function PopupWithForm({ name, title, isOpen, onClose }) {
             />
             <span id="aboutme-input-error"></span>
 
-            <button type="submit" className="form__submit" onClick={onClose}>
+            <button type="submit" className="form__submit">
               Save
             </button>
           </form>
@@ -61,7 +61,7 @@ function PopupWithForm({ name, title, isOpen, onClose }) {
             />
             <span id="avatarImage-input-error"></span>
 
-            <button type="submit" className="form__submit" onClick={onClose}>
+            <button type="submit" className="form__submit">
               Save
             </button>
           </form>
