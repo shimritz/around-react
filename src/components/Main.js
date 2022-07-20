@@ -75,7 +75,7 @@ function Main({
 
           //   <template id="card-template">
           return (
-            <article className="card">
+            <article className="card" key={card._id}>
               <img
                 className="card__image"
                 src={link}
