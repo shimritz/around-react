@@ -1,9 +1,9 @@
 import React from "react";
 
-function PopupWithForm({ name, title }) {
+function PopupWithForm({ name, title, isOpen, onClose }) {
   return (
     <>
-      <div className={`modal modal_type_${name}`}>
+      <div className={`modal modal_type_${name} ${isOpen ? "modal_open" : ""}`}>
         <div className="modal__container">
           <button
             type="button"
@@ -33,19 +33,20 @@ function PopupWithForm({ name, title }) {
             />
             <span id="aboutme-input-error"></span>
 
-            <button type="submit" className="form__submit">
+            <button type="submit" className="form__submit" onClick={onClose}>
               Save
             </button>
           </form>
         </div>
       </div>
 
-      <div className={`modal modal_type_${name}`}>
+      <div className={`modal modal_type_${name} ${isOpen ? "modal_open" : ""}`}>
         <div className="modal__container ">
           <button
             type="button"
             className="modal__close-btn modal__close-btn_profile"
             aria-label="close-button"
+            onClick={onClose}
           ></button>
 
           <form className="form ">
@@ -60,18 +61,19 @@ function PopupWithForm({ name, title }) {
             />
             <span id="avatarImage-input-error"></span>
 
-            <button type="submit" className="form__submit">
+            <button type="submit" className="form__submit" onClick={onClose}>
               Save
             </button>
           </form>
         </div>
       </div>
-      <div className={`modal modal_type_${name}`}>
+      <div className={`modal modal_type_${name} ${isOpen ? "modal_open" : ""}`}>
         <div className="modal__container">
           <button
             type="button"
             className="modal__close-btn modal__close-btn_add-card"
             aria-label="close-button"
+            onClick={onClose}
           ></button>
           <form className="form" name={name} id="addcardform">
             <h2 className="form__title">{title}</h2>
@@ -107,12 +109,13 @@ function PopupWithForm({ name, title }) {
         </div>
       </div>
 
-      <div className={`modal modal_type_${name}`}>
+      <div className={`modal modal_type_${name} ${isOpen ? "modal_open" : ""}`}>
         <div className="modal__container">
           <button
             type="button"
             className="modal__close-btn modal__close-btn_delete-card"
             aria-label="close-button"
+            onClick={onClose}
           ></button>
 
           <form className="form" name={name}>

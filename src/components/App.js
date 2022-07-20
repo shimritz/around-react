@@ -1,17 +1,44 @@
+import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
+import { useState } from "react";
 
 function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
+    React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
+    React.useState(false);
+
+  function handlePopupOpen() {
+    setIsEditProfilePopupOpen(true);
+    setIsAddPlacePopupOpen(true);
+    setIsEditAvatarPopupOpen(true);
+  }
+
+  function closeAllPopups() {
+    console.log("here-1");
+    console.log("here-2", isEditProfilePopupOpen);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+  }
+
   return (
     <>
       <div className="page">
         <Header />
 
-        <Main />
-        <PopupWithForm />
+        <Main
+          onEditProfileClick={handleEditProfileClick}
+          onAddPlaceClick={handleAddPlaceClick}
+          onEditAvatarClick={handleEditAvatarClick}
+          onCardClick={handleCardClick}
+        />
+        <PopupWithForm onPopupOpen={handlePopupOpen} onClose={closeAllPopups} />
         {/* <ImagePopup /> */}
         <div className="modal modal_type_profile">
           <div className="modal__container">
@@ -134,7 +161,7 @@ function App() {
           </div>
         </div>
 
-        {/* <div className="modal modal_type_preview">
+        <div className="modal modal_type_preview">
           <div className="modal__container modal__container_type_preview">
             <button
               type="button"
@@ -144,7 +171,7 @@ function App() {
             <img className="modal__popup-image" src="#" alt="popup image" />
             <h2 className="modal__popup-name"></h2>
           </div>
-        </div> */}
+        </div>
 
         <template id="card-template">
           <article className="card">
@@ -171,6 +198,29 @@ function App() {
       </div>
     </>
   );
+
+  function handleEditAvatarClick() {
+    console.log("kokoko");
+    const avatarChangePopup = document.querySelector(
+      ".modal_type_avatar-change"
+    );
+    avatarChangePopup.classList.add("modal_open");
+  }
+  function handleEditProfileClick() {
+    console.log("EditprofileEvent");
+    const avatarChangePopup = document.querySelector(".modal_type_profile");
+    avatarChangePopup.classList.add("modal_open");
+  }
+  function handleAddPlaceClick() {
+    console.log("ADDprofileEvent");
+    const avatarChangePopup = document.querySelector(".modal_type_add-card");
+    avatarChangePopup.classList.add("modal_open");
+  }
+  function handleCardClick() {
+    const imagePopup = document.querySelector(".modal_type_preview");
+    console.log("XXX", imagePopup);
+    imagePopup.classList.add("modal_open");
+  }
 }
 
 export default App;

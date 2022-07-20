@@ -1,14 +1,16 @@
 import React from "react";
 import profilePhoto from "../images/profile_photo-image(1).jpg";
 
-function Main() {
+function Main({
+  onEditProfileClick,
+  onAddPlaceClick,
+  onEditAvatarClick,
+  onCardClick,
+}) {
   return (
     <main className="page__content">
       <section className="profile">
-        <div
-          onClick={handleEditAvatarClick}
-          className="profile__avatar-container"
-        >
+        <div onClick={onEditAvatarClick} className="profile__avatar-container">
           <img
             className="profile__avatar"
             src={profilePhoto}
@@ -22,7 +24,7 @@ function Main() {
             <button
               type="button"
               className="profile__edit-button"
-              onClick={handleEditProfileClick}
+              onClick={onEditProfileClick}
             ></button>
           </div>
           <p className="profile__about-me">aboutMe</p>
@@ -32,51 +34,35 @@ function Main() {
           type="button"
           className="profile__add-button"
           aria-label="add-btn"
-          onClick={handleAddPlaceClick}
+          onClick={onAddPlaceClick}
         ></button>
       </section>
 
-      <section className="photos"></section>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
+      <section className="photos">
+        <button onClick={onCardClick}>test</button>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+      </section>
     </main>
   );
-  function handleEditAvatarClick() {
-    console.log("kokoko");
-    const avatarChangePopup = document.querySelector(
-      ".modal_type_avatar-change"
-    );
-    avatarChangePopup.classList.add("modal_open");
-  }
-  function handleEditProfileClick() {
-    console.log("EditprofileEvent");
-    const avatarChangePopup = document.querySelector(".modal_type_profile");
-    avatarChangePopup.classList.add("modal_open");
-  }
-  function handleAddPlaceClick() {
-    console.log("ADDprofileEvent");
-    const avatarChangePopup = document.querySelector(".modal_type_add-card");
-    avatarChangePopup.classList.add("modal_open");
-  }
 }
 
 export default Main;
