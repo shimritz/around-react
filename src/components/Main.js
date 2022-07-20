@@ -11,6 +11,7 @@ function Main({
   const [userName, setUserName] = React.useState("");
   const [userDescription, setUserDescription] = React.useState("");
   const [userAvatar, setUserAvatar] = React.useState("");
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     api
@@ -19,6 +20,15 @@ function Main({
         setUserName(res.name);
         setUserDescription(res.aboutMe);
         setUserAvatar(res.avatar);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  React.useEffect(() => {
+    api
+      .getInitialCards()
+      .then((res) => {
+        setCards(res);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -57,26 +67,38 @@ function Main({
 
       <section className="photos">
         <button onClick={onCardClick}>test</button>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
+        {/* doing array loop and creating cards by temple */}
+
+        {cards.map((card) => {
+          const { name, likes, link } = card;
+          console.log("name", { name });
+
+          //   <template id="card-template">
+          <article className="card">
+            <img
+              className="card__image"
+              src={link}
+              alt="a picture of a valley"
+            />
+            <button
+              type="button"
+              className="card_close card__bin-btn"
+              aria-label="delete button"
+            ></button>
+            <div className="card__footer">
+              <h2 className="card__name">{name}</h2>
+              <div className="card__likes">
+                <button
+                  type="button"
+                  className="card__like-btn"
+                  aria-label="like button"
+                ></button>
+                <div className="card__likes-count">{likes}</div>
+              </div>
+            </div>
+          </article>;
+          //   </template>;
+        })}
       </section>
     </main>
   );
