@@ -68,8 +68,7 @@ function Main({
 
       <section className="photos">
         {cards.map((card) => {
-          // console.log("cardtestttt", card);
-          return <Card {...card} key={card.id} />;
+          return <Card {...card} key={card._id} onCardClick={onCardClick} />;
         })}
       </section>
     </main>
