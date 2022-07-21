@@ -1,6 +1,7 @@
 import React from "react";
 import profilePhoto from "../images/profile_photo-image(1).jpg";
 import { api } from "../utils/api";
+import Card from "./Card";
 
 function Main({
   onEditProfileClick,
@@ -66,40 +67,9 @@ function Main({
       </section>
 
       <section className="photos">
-        {/* <button onClick={onCardClick}>test</button> */}
-        {/* doing array loop and creating cards by temple */}
-
         {cards.map((card) => {
-          const { name, likes, link } = card;
-          //   console.log("name", { name });
-
-          //   <template id="card-template">
-          return (
-            <article className="card" key={card._id}>
-              <img
-                className="card__image"
-                src={link}
-                alt="a picture of a valley"
-              />
-              <button
-                type="button"
-                className="card_close card__bin-btn"
-                aria-label="delete button"
-              ></button>
-              <div className="card__footer">
-                <h2 className="card__name">{name}</h2>
-                <div className="card__likes">
-                  <button
-                    type="button"
-                    className="card__like-btn"
-                    aria-label="like button"
-                  ></button>
-                  <div className="card__likes-count">{likes.length}</div>
-                </div>
-              </div>
-            </article>
-            //   </template>;
-          );
+          // console.log("cardtestttt", card);
+          return <Card {...card} key={card.id} />;
         })}
       </section>
     </main>
