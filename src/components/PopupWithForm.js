@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Children } from "react";
 
-function PopupWithForm({ name, title, isOpen, onClose }) {
+function PopupWithForm({ name, title, isOpen, onClose, children }) {
   return (
     <>
       <div className={`modal modal_type_${name} ${isOpen ? "modal_open" : ""}`}>
@@ -13,7 +13,7 @@ function PopupWithForm({ name, title, isOpen, onClose }) {
           ></button>
           <form className="form" name={name}>
             <h2 className="form__title">{title}</h2>
-
+            {children}
             <button type="submit" className="form__submit">
               Save
             </button>
