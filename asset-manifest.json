@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/%7Baround-react%7D/static/css/main.1453f343.css",
-    "main.js": "/%7Baround-react%7D/static/js/main.50cece09.js",
-    "static/js/787.1c78f32b.chunk.js": "/%7Baround-react%7D/static/js/787.1c78f32b.chunk.js",
-    "static/media/Vectorlogo.svg": "/%7Baround-react%7D/static/media/Vectorlogo.93d4395eb12af67dc0abe3fdfead11ce.svg",
-    "index.html": "/%7Baround-react%7D/index.html",
-    "static/media/Unionheart.svg": "/%7Baround-react%7D/static/media/Unionheart.f8482d28867cec189b08.svg",
-    "static/media/deleteBinimage(1).svg": "/%7Baround-react%7D/static/media/deleteBinimage(1).e78b50e03f694edfe698.svg",
-    "static/media/heartVector(1).svg": "/%7Baround-react%7D/static/media/heartVector(1).f6e9207c29cefc583ab8.svg",
-    "static/media/CloseIcon(1).svg": "/%7Baround-react%7D/static/media/CloseIcon(1).2c95ef2d4194e2e009fb.svg",
-    "static/media/Vector-pencil.svg": "/%7Baround-react%7D/static/media/Vector-pencil.6c7bf05444b9793fdf6e.svg",
-    "static/media/Vector+add.svg": "/%7Baround-react%7D/static/media/Vector+add.bed8c136e13907f5eefb.svg",
-    "main.1453f343.css.map": "/%7Baround-react%7D/static/css/main.1453f343.css.map",
-    "main.50cece09.js.map": "/%7Baround-react%7D/static/js/main.50cece09.js.map",
-    "787.1c78f32b.chunk.js.map": "/%7Baround-react%7D/static/js/787.1c78f32b.chunk.js.map"
+    "main.css": "/around-react/static/css/main.5bfeddc0.css",
+    "main.js": "/around-react/static/js/main.8506228f.js",
+    "static/js/787.1c78f32b.chunk.js": "/around-react/static/js/787.1c78f32b.chunk.js",
+    "static/media/Vectorlogo.svg": "/around-react/static/media/Vectorlogo.93d4395eb12af67dc0abe3fdfead11ce.svg",
+    "index.html": "/around-react/index.html",
+    "static/media/Unionheart.svg": "/around-react/static/media/Unionheart.f8482d28867cec189b08.svg",
+    "static/media/deleteBinimage(1).svg": "/around-react/static/media/deleteBinimage(1).e78b50e03f694edfe698.svg",
+    "static/media/heartVector(1).svg": "/around-react/static/media/heartVector(1).f6e9207c29cefc583ab8.svg",
+    "static/media/CloseIcon(1).svg": "/around-react/static/media/CloseIcon(1).2c95ef2d4194e2e009fb.svg",
+    "static/media/Vector-pencil.svg": "/around-react/static/media/Vector-pencil.6c7bf05444b9793fdf6e.svg",
+    "static/media/Vector+add.svg": "/around-react/static/media/Vector+add.bed8c136e13907f5eefb.svg",
+    "main.5bfeddc0.css.map": "/around-react/static/css/main.5bfeddc0.css.map",
+    "main.8506228f.js.map": "/around-react/static/js/main.8506228f.js.map",
+    "787.1c78f32b.chunk.js.map": "/around-react/static/js/787.1c78f32b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1453f343.css",
-    "static/js/main.50cece09.js"
+    "static/css/main.5bfeddc0.css",
+    "static/js/main.8506228f.js"
   ]
 }
