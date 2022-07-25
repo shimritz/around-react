@@ -65,6 +65,7 @@ function App() {
         title="Edit profile"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
+        buttonText={"Save"}
       >
         <input
           id="name-input"
@@ -89,10 +90,11 @@ function App() {
       </PopupWithForm>
 
       <PopupWithForm
-        name=""
+        name="changeAvatar"
         title="Change avatar"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
+        buttonText={"Save"}
       >
         <input
           className="form__input form__input_type_image"
@@ -109,6 +111,7 @@ function App() {
         title="New Place"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
+        buttonText={"Create"}
       >
         <input
           id="title-input"

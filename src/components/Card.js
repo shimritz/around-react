@@ -2,7 +2,7 @@ import React from "react";
 
 function Card({ name, likes, link, selectedCard, onCardClick }) {
   function handleClick() {
-    onCardClick({ name: name, link: link, likes: likes });
+    onCardClick({ name, link, likes });
   }
   return (
     <article className="card">
