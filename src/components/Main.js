@@ -1,5 +1,5 @@
 import React from "react";
-import profilePhoto from "../images/profile_photo-image(1).jpg";
+
 import { api } from "../utils/api";
 import Card from "./Card";
 
@@ -8,6 +8,7 @@ function Main({
   onAddPlaceClick,
   onEditAvatarClick,
   onCardClick,
+  onTrashBinClick,
 }) {
   const [userName, setUserName] = React.useState("");
   const [userDescription, setUserDescription] = React.useState("");
@@ -68,7 +69,14 @@ function Main({
 
       <section className="photos">
         {cards.map((card) => {
-          return <Card {...card} key={card._id} onCardClick={onCardClick} />;
+          return (
+            <Card
+              {...card}
+              key={card._id}
+              onCardClick={onCardClick}
+              onTrashBinClick={onTrashBinClick}
+            />
+          );
         })}
       </section>
     </main>

@@ -12,7 +12,8 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
-  const [isPreviewImageOpen, setisPreviewImageOpen] = React.useState(false);
+  const [isPreviewImageOpen, setIsPreviewImageOpen] = React.useState(false);
+
   const [selectedCard, setSelectedCard] = React.useState({
     name: "",
     link: "",
@@ -30,7 +31,7 @@ function App() {
   }
 
   const handleCardClick = (card) => {
-    setisPreviewImageOpen(true);
+    setIsPreviewImageOpen(true);
     setSelectedCard({
       name: card.name,
       link: card.link,
@@ -41,7 +42,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
-    setisPreviewImageOpen(false);
+    setIsPreviewImageOpen(false);
     setSelectedCard({ name: "", link: "" });
   }
 
@@ -57,7 +58,6 @@ function App() {
       <ImagePopup
         card={selectedCard}
         isOpen={isPreviewImageOpen}
-        // onClick={handleCardClick}
         onClose={closeAllPopups}
       ></ImagePopup>
       <PopupWithForm

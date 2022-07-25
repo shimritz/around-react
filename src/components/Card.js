@@ -4,6 +4,7 @@ function Card({ name, likes, link, selectedCard, onCardClick }) {
   function handleClick() {
     onCardClick({ name, link, likes });
   }
+
   return (
     <article className="card">
       <img
