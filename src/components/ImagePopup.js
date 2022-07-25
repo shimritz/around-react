@@ -1,8 +1,8 @@
 import React from "react";
 
-function ImagePopup({ card, onClose }) {
+function ImagePopup({ card, onClose, isOpen }) {
   return (
-    <div className={`modal modal_type_preview ${card ? "modal_open" : ""}`}>
+    <div className={`modal modal_type_preview ${isOpen ? "modal_open" : ""}`}>
       <div className="modal__container modal__container_type_preview">
         <button
           type="button"
@@ -12,10 +12,10 @@ function ImagePopup({ card, onClose }) {
         ></button>
         <img
           className="modal__popup-image"
-          src={card ? card.link : ""}
-          alt={card ? card.name : ""}
+          src={card.link}
+          alt={card ? card.name : "not-found"}
         />
-        <h2 className="modal__popup-name"></h2>
+        <figcaption className="modal__popup-name">{card.name}</figcaption>
       </div>
     </div>
   );
