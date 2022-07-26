@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/around-react/static/css/main.5bfeddc0.css",
-    "main.js": "/around-react/static/js/main.8506228f.js",
+    "main.css": "/around-react/static/css/main.1f6446aa.css",
+    "main.js": "/around-react/static/js/main.218bd44d.js",
     "static/js/787.1c78f32b.chunk.js": "/around-react/static/js/787.1c78f32b.chunk.js",
     "static/media/Vectorlogo.svg": "/around-react/static/media/Vectorlogo.93d4395eb12af67dc0abe3fdfead11ce.svg",
     "index.html": "/around-react/index.html",
@@ -11,12 +11,12 @@
     "static/media/CloseIcon(1).svg": "/around-react/static/media/CloseIcon(1).2c95ef2d4194e2e009fb.svg",
     "static/media/Vector-pencil.svg": "/around-react/static/media/Vector-pencil.6c7bf05444b9793fdf6e.svg",
     "static/media/Vector+add.svg": "/around-react/static/media/Vector+add.bed8c136e13907f5eefb.svg",
-    "main.5bfeddc0.css.map": "/around-react/static/css/main.5bfeddc0.css.map",
-    "main.8506228f.js.map": "/around-react/static/js/main.8506228f.js.map",
+    "main.1f6446aa.css.map": "/around-react/static/css/main.1f6446aa.css.map",
+    "main.218bd44d.js.map": "/around-react/static/js/main.218bd44d.js.map",
     "787.1c78f32b.chunk.js.map": "/around-react/static/js/787.1c78f32b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5bfeddc0.css",
-    "static/js/main.8506228f.js"
+    "static/css/main.1f6446aa.css",
+    "static/js/main.218bd44d.js"
   ]
 }
