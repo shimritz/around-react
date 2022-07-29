@@ -2,6 +2,7 @@ import React from "react";
 
 import { api } from "../utils/api";
 import Card from "./Card";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main({
   onEditProfileClick,
@@ -10,21 +11,21 @@ function Main({
   onCardClick,
   onTrashBinClick,
 }) {
-  const [userName, setUserName] = React.useState("");
-  const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
+  // const [userName, setUserName] = React.useState("");
+  // const [userDescription, setUserDescription] = React.useState("");
+  // const [userAvatar, setUserAvatar] = React.useState("");
   const [cards, setCards] = React.useState([]);
 
-  React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((res) => {
-        setUserName(res.name);
-        setUserDescription(res.aboutMe);
-        setUserAvatar(res.avatar);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  // React.useEffect(() => {
+  //   api
+  //     .getUserInfo()
+  //     .then((res) => {
+  //       setUserName(res.name);
+  //       setUserDescription(res.aboutMe);
+  //       setUserAvatar(res.avatar);
+  //     })
+  //     .catch((error) => console.log(error));
+  // }, []);
 
   React.useEffect(() => {
     api
@@ -42,13 +43,13 @@ function Main({
           <img
             className="profile__avatar"
             // src={profilePhoto}
-            src={userAvatar}
-            alt="user photo"
+            src={CurrentUserContext.avatar}
+            alt=""
           />
         </div>
         <div className="profile__info">
           <div className="profile__name-container">
-            <h1 className="profile__name">{userName}</h1>
+            <h1 className="profile__name">{CurrentUserContext.name}</h1>
 
             <button
               type="button"
@@ -56,7 +57,7 @@ function Main({
               onClick={onEditProfileClick}
             ></button>
           </div>
-          <p className="profile__about-me">{userDescription}</p>
+          <p className="profile__about-me">{CurrentUserContext.aboutMe}</p>
         </div>
 
         <button
