@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import { useState } from "react";
+import { api } from "../utils/api";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -18,6 +19,24 @@ function App() {
     name: "",
     link: "",
   });
+  const [currentUser, setCurrentUser] = React.useState({
+    name: "",
+    aboutMe: "",
+    avatar: "",
+  });
+
+  React.useEffect(() => {
+    api
+      .getUserInfo()
+      .then((res) => {
+        setCurrentUser({
+          name: res.name,
+          aboutMe: res.aboutMe,
+          avatar: res.avatar,
+        });
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
