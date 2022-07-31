@@ -15,6 +15,7 @@ function Main({
   // const [userDescription, setUserDescription] = React.useState("");
   // const [userAvatar, setUserAvatar] = React.useState("");
   const [cards, setCards] = React.useState([]);
+  const currentUser = React.useContext(CurrentUserContext);
 
   // React.useEffect(() => {
   //   api
@@ -43,13 +44,13 @@ function Main({
           <img
             className="profile__avatar"
             // src={profilePhoto}
-            src={CurrentUserContext.avatar}
+            src={currentUser.avatar}
             alt=""
           />
         </div>
         <div className="profile__info">
           <div className="profile__name-container">
-            <h1 className="profile__name">{CurrentUserContext.name}</h1>
+            <h1 className="profile__name">{currentUser.name}</h1>
 
             <button
               type="button"
@@ -57,7 +58,7 @@ function Main({
               onClick={onEditProfileClick}
             ></button>
           </div>
-          <p className="profile__about-me">{CurrentUserContext.aboutMe}</p>
+          <p className="profile__about-me">{currentUser.aboutMe}</p>
         </div>
 
         <button

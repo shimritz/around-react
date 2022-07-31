@@ -32,7 +32,7 @@ function App() {
       .then((res) => {
         setCurrentUser({
           name: res.name,
-          aboutMe: res.aboutMe,
+          aboutMe: res.about,
           avatar: res.avatar,
         });
       })
