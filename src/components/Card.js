@@ -1,9 +1,19 @@
 import React from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Card({ name, likes, link, selectedCard, onCardClick }) {
+function Card({ name, likes, link, owner, selectedCard, onCardClick }) {
   function handleClick() {
     onCardClick({ name, link, likes });
   }
+  const currentUser = React.useContext(CurrentUserContext);
+  // Checking if the current user is the owner of the current card
+  const isOwn = owner._id === currentUser._id;
+  console.log(isOwn);
+
+  // Creating a variable which you'll then set in `className` for the delete button
+  const cardDeleteButtonClassName = `card__bin-btn ${
+    isOwn ? "card__bin-btn" : "card__bin-btn_hidden"
+  }`;
 
   return (
     <article className="card">
@@ -15,7 +25,7 @@ function Card({ name, likes, link, selectedCard, onCardClick }) {
       />
       <button
         type="button"
-        className="card_close card__bin-btn"
+        className={cardDeleteButtonClassName}
         aria-label="delete button"
       ></button>
       <div className="card__footer">
