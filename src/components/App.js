@@ -21,6 +21,7 @@ function App() {
     link: "",
   });
   const [currentUser, setCurrentUser] = React.useState({
+    _id: "",
     name: "",
     aboutMe: "",
     avatar: "",
@@ -31,6 +32,7 @@ function App() {
       .getUserInfo()
       .then((res) => {
         setCurrentUser({
+          _id: res._id,
           name: res.name,
           aboutMe: res.about,
           avatar: res.avatar,
@@ -49,6 +51,13 @@ function App() {
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
+
+  // function handleCardLike(card) {
+  //    const isLiked = card.likes.some((user) => user._id === currentUser._id);
+  //  api.addLike(card._id)
+  //  .then()
+  //   // setIsLiked(true);
+  // }
 
   const handleCardClick = (card) => {
     setIsPreviewImageOpen(true);

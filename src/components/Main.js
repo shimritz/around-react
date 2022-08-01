@@ -11,9 +11,6 @@ function Main({
   onCardClick,
   onTrashBinClick,
 }) {
-  // const [userName, setUserName] = React.useState("");
-  // const [userDescription, setUserDescription] = React.useState("");
-  // const [userAvatar, setUserAvatar] = React.useState("");
   const [cards, setCards] = React.useState([]);
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -36,6 +33,30 @@ function Main({
       })
       .catch((error) => console.log(error));
   }, []);
+
+  function handleCardLike(card) {
+    // Check one more time if this card was already liked
+    const isLiked = card.likes.some((user) => user._id === currentUser._id);
+    console.log("currentUser", currentUser);
+
+    console.log("cards before->", cards);
+    // Send a request to the API and getting the updated card data
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        console.log("newcard", newCard);
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id ? newCard : currentCard
+          )
+        );
+
+        console.log("cards after->", cards);
+      })
+      .catch((err) => console.log(err));
+
+    console.log("isLiked", isLiked);
+  }
 
   return (
     <main className="page__content">
@@ -77,6 +98,7 @@ function Main({
               key={card._id}
               onCardClick={onCardClick}
               onTrashBinClick={onTrashBinClick}
+              onCardLike={handleCardLike}
             />
           );
         })}

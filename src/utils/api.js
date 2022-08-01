@@ -68,6 +68,10 @@ class Api {
       method: "DELETE",
     }).then(this._checkResponse);
   }
+
+  changeLikeCardStatus(id, isLiked) {
+    return isLiked ? this.addLike(id) : this.removeLike(id);
+  }
 }
 
 export const api = new Api({
