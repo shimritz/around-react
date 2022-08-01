@@ -63,12 +63,13 @@ function Main({
     console.log("handleCardDelete", id);
     api
       .deleteCard(id)
-      // console.log(id)
+
       .then(() => {
         setCards((cards) =>
           cards.filter((currentCard) => currentCard._id !== id)
-        ).catch((err) => console.log(err));
-      });
+        );
+      })
+      .catch((err) => console.log(err));
   }
 
   return (

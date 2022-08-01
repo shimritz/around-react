@@ -24,8 +24,8 @@ function Card({
   }
 
   function handleDeleteClick() {
-    onCardDelete({ _id });
-    console.log("delete-evt", _id);
+    onCardDelete(_id);
+    // console.log("delete-evt", _id);
   }
   const currentUser = React.useContext(CurrentUserContext);
   // Checking if the current user is the owner of the current card
