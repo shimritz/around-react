@@ -10,6 +10,7 @@ function Card({
   selectedCard,
   onCardClick,
   onCardLike,
+  onCardDelete,
 }) {
   function handleClick() {
     onCardClick({ name, link, likes });
@@ -21,6 +22,11 @@ function Card({
     // isLiked(true);
     onCardLike({ likes, _id });
   }
+
+  function handleDeleteClick() {
+    onCardDelete({ _id });
+    console.log("delete-evt", _id);
+  }
   const currentUser = React.useContext(CurrentUserContext);
   // Checking if the current user is the owner of the current card
   const isOwn = owner._id === currentUser._id;
@@ -28,7 +34,7 @@ function Card({
 
   // Creating a variable which you'll then set in `className` for the delete button
   const cardDeleteButtonClassName = `card__bin-btn ${
-    isOwn ? "card__bin-btn" : "card__bin-btn_hidden"
+    isOwn ? "" : "card__bin-btn_hidden"
   }`;
 
   const cardLikeButtonClassName = `card__like-btn ${
@@ -47,6 +53,7 @@ function Card({
         type="button"
         className={cardDeleteButtonClassName}
         aria-label="delete button"
+        onClick={handleDeleteClick}
       ></button>
       <div className="card__footer">
         <h2 className="card__name">{name}</h2>

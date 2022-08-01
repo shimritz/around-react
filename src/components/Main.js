@@ -10,6 +10,7 @@ function Main({
   onEditAvatarClick,
   onCardClick,
   onTrashBinClick,
+  onCardDelete,
 }) {
   const [cards, setCards] = React.useState([]);
   const currentUser = React.useContext(CurrentUserContext);
@@ -58,6 +59,18 @@ function Main({
     console.log("isLiked", isLiked);
   }
 
+  function handleCardDelete(id) {
+    console.log("handleCardDelete", id);
+    api
+      .deleteCard(id)
+      // console.log(id)
+      .then(() => {
+        setCards((cards) =>
+          cards.filter((currentCard) => currentCard._id !== id)
+        ).catch((err) => console.log(err));
+      });
+  }
+
   return (
     <main className="page__content">
       <section className="profile">
@@ -99,6 +112,7 @@ function Main({
               onCardClick={onCardClick}
               onTrashBinClick={onTrashBinClick}
               onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
             />
           );
         })}

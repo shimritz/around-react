@@ -28,10 +28,15 @@ class Api {
   }
 
   deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
-      headers: this._headers,
-      method: "DELETE",
-    }).then(this._checkResponse);
+    console.log("from api", cardId);
+    return fetch(
+      `${this._baseUrl}/cards/${cardId}`,
+      {
+        headers: this._headers,
+        method: "DELETE",
+      },
+      { mode: "no-cors" }
+    ).then(this._checkResponse);
   }
 
   editProfile(name, about) {
