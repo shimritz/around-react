@@ -7,12 +7,13 @@ import ImagePopup from "./ImagePopup";
 import { useState } from "react";
 import { api } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import EditProfilePopup from "./EditProfilePopup";
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
-    React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
+    React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
   const [isPreviewImageOpen, setIsPreviewImageOpen] = React.useState(false);
 
@@ -75,6 +76,26 @@ function App() {
     setSelectedCard({ name: "", link: "" });
   }
 
+  const handleUpdateUser = ({ name, about }) => {
+    api
+      .editProfile(name, about)
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // function handleSubmit(e) {
+  //   // Prevent the browser from navigating to the form address
+  //   e.preventDefault();
+
+  //   // Pass the values of the managed components to the external handler
+  //   onUpdateUser({
+  //     name,
+  //     about: about,
+  //   });
+  }
+
   return (
     <div>
       <CurrentUserContext.Provider value={currentUser}>
@@ -90,34 +111,12 @@ function App() {
           isOpen={isPreviewImageOpen}
           onClose={closeAllPopups}
         ></ImagePopup>
-        <PopupWithForm
-          name="profile"
-          title="Edit profile"
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-          buttonText={"Save"}
-        >
-          <input
-            id="name-input"
-            className="form__input form__input_type_name"
-            type="text"
-            name="name"
-            required
-            minLength="2"
-            maxLength="40"
-          />
-          <span id="name-input-error"></span>
-          <input
-            id="aboutme-input"
-            className="form__input form__input_type_about-me"
-            type="text"
-            name="aboutMe"
-            required
-            minLength="2"
-            maxLength="200"
-          />
-          <span id="aboutme-input-error"></span>
-        </PopupWithForm>
+          // onUpdateUser={handleUpdateUser}
+          onSubmit={handleUpdateUser}
+        />
 
         <PopupWithForm
           name="changeAvatar"
