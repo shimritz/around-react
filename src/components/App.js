@@ -8,6 +8,7 @@ import { useState } from "react";
 import { api } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
@@ -45,6 +46,7 @@ function App() {
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
+
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
@@ -82,22 +84,30 @@ function App() {
     api
       .editProfile(name, about)
       .then((res) => {
-        setCurrentUser({ name: res.name, aboutMe: res.about });
+        setCurrentUser({
+          name: res.name,
+          aboutMe: res.about,
+          avatar: res.avatar,
+        });
         closeAllPopups();
       })
       .catch((err) => console.log(err));
   };
 
-  // function handleSubmit(e) {
-  //   // Prevent the browser from navigating to the form address
-  //   e.preventDefault();
-
-  //   // Pass the values of the managed components to the external handler
-  //   onUpdateUser({
-  //     name,
-  //     about: about,
-  //   });
-  // }
+  const handleUpdateAvatar = (avatar) => {
+    console.log("avatar", avatar);
+    api
+      .editAvatar(avatar)
+      .then((res) => {
+        setCurrentUser({
+          name: res.name,
+          aboutMe: res.about,
+          avatar: res.avatar,
+        });
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div>
@@ -120,24 +130,11 @@ function App() {
           // onUpdateUser={handleUpdateUser}
           onUpdateUser={handleUpdateUser}
         />
-
-        <PopupWithForm
-          name="changeAvatar"
-          title="Change avatar"
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-          buttonText={"Save"}
-        >
-          <input
-            className="form__input form__input_type_image"
-            type="url"
-            name="image"
-            id="avatarImage-input"
-            placeholder="Image URL"
-            required
-          />
-          <span id="avatarImage-input-error"></span>
-        </PopupWithForm>
+          onUpdateAvatar={handleUpdateAvatar}
+        />
         <PopupWithForm
           name="addNewCard"
           title="New Place"
