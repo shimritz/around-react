@@ -9,6 +9,7 @@ import { api } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
+import Card from "./Card";
 
 function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
@@ -28,6 +29,7 @@ function App() {
     aboutMe: "",
     avatar: "",
   });
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     api
@@ -109,6 +111,63 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  // React.useEffect(() => {
+  //   api
+  //     .getUserInfo()
+  //     .then((res) => {
+  //       setUserName(res.name);
+  //       setUserDescription(res.aboutMe);
+  //       setUserAvatar(res.avatar);
+  //     })
+  //     .catch((error) => console.log(error));
+  // }, []);
+
+  React.useEffect(() => {
+    api
+      .getInitialCards()
+      .then((res) => {
+        setCards(res);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  function handleCardLike(card) {
+    // Check one more time if this card was already liked
+    const isLiked = card.likes.some((user) => user._id === currentUser._id);
+    console.log("currentUser", currentUser);
+
+    console.log("cards before->", cards);
+    // Send a request to the API and getting the updated card data
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        console.log("newcard", newCard);
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id ? newCard : currentCard
+          )
+        );
+
+        console.log("cards after->", cards);
+      })
+      .catch((err) => console.log(err));
+
+    console.log("isLiked", isLiked);
+  }
+
+  function handleCardDelete(id) {
+    console.log("handleCardDelete", id);
+    api
+      .deleteCard(id)
+
+      .then(() => {
+        setCards((cards) =>
+          cards.filter((currentCard) => currentCard._id !== id)
+        );
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div>
       <CurrentUserContext.Provider value={currentUser}>
@@ -118,6 +177,8 @@ function App() {
           onAddPlaceClick={handleAddPlaceClick}
           onEditAvatarClick={handleEditAvatarClick}
           onCardClick={handleCardClick}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
         />
         <ImagePopup
           card={selectedCard}
@@ -163,7 +224,20 @@ function App() {
           />
           <span id="image-input-error"></span>
         </PopupWithForm>
-
+        <section className="photos">
+          {cards.map((card) => {
+            return (
+              <Card
+                {...card}
+                key={card._id}
+                // onCardClick={onCardClick}
+                // onTrashBinClick={onTrashBinClick}
+                onCardLike={handleCardLike}
+                onCardDelete={handleCardDelete}
+              />
+            );
+          })}
+        </section>
         <Footer />
       </CurrentUserContext.Provider>
     </div>
