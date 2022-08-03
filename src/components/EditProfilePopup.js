@@ -21,7 +21,8 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     setAboutMe(evt.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onUpdateUser(name, aboutMe);
   };
   return (
@@ -32,7 +33,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         isOpen={isOpen}
         onClose={onClose}
         buttonText={"Save"}
-        onUpdateUser={handleSubmit}
+        onSubmit={handleSubmit}
       >
         <input
           id="name-input"
@@ -42,7 +43,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
           required
           minLength="2"
           maxLength="40"
-          value={name}
+          value={name || ""}
           onChange={handleNameChange}
         />
         <span id="name-input-error"></span>
@@ -54,7 +55,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
           required
           minLength="2"
           maxLength="200"
-          value={aboutMe}
+          value={aboutMe || ""}
           onChange={handleAboutMeChange}
         />
         <span id="aboutme-input-error"></span>

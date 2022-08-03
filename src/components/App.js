@@ -76,11 +76,14 @@ function App() {
     setSelectedCard({ name: "", link: "" });
   }
 
-  const handleUpdateUser = ({ name, about }) => {
+  const handleUpdateUser = (name, about) => {
+    console.log("name", name, "about", about);
+
     api
       .editProfile(name, about)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser({ name: res.name, aboutMe: res.about });
+        closeAllPopups();
       })
       .catch((err) => console.log(err));
   };
@@ -94,7 +97,7 @@ function App() {
   //     name,
   //     about: about,
   //   });
-  }
+  // }
 
   return (
     <div>
@@ -115,7 +118,7 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           // onUpdateUser={handleUpdateUser}
-          onSubmit={handleUpdateUser}
+          onUpdateUser={handleUpdateUser}
         />
 
         <PopupWithForm
