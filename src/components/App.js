@@ -10,6 +10,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import Card from "./Card";
+import AddPlacePopup from "./AddPlacePopup";
 
 function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
@@ -159,11 +160,19 @@ function App() {
     console.log("handleCardDelete", id);
     api
       .deleteCard(id)
-
       .then(() => {
         setCards((cards) =>
           cards.filter((currentCard) => currentCard._id !== id)
         );
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleSubmit(card) {
+    api
+      .createCard(card)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
       })
       .catch((err) => console.log(err));
   }
@@ -196,34 +205,11 @@ function App() {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
         />
-        <PopupWithForm
-          name="addNewCard"
-          title="New Place"
+        <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-          buttonText={"Create"}
-        >
-          <input
-            id="title-input"
-            className="form__input form__input_type_name"
-            type="text"
-            name="title"
-            placeholder="Title"
-            required
-            minLength="1"
-            maxLength="30"
-          />
-          <span id="title-input-error"></span>
-          <input
-            id="image-input"
-            className="form__input form__input_type_image"
-            type="url"
-            name="image"
-            placeholder="Image URL"
-            required
-          />
-          <span id="image-input-error"></span>
-        </PopupWithForm>
+          onAddPlaceSubmit={handleSubmit}
+        />
         <section className="photos">
           {cards.map((card) => {
             return (
