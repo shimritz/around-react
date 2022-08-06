@@ -60,7 +60,6 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         />
         <span id="aboutme-input-error"></span>
       </PopupWithForm>
-      ;
     </>
   );
 }

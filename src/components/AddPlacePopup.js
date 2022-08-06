@@ -6,14 +6,14 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit }) {
   const [name, setName] = React.useState("");
   const [image, setImage] = React.useState("");
 
-  React.useEffect(() => {
-    setName(name);
-    setImage(image);
-  }, []);
+  // React.useEffect(() => {
+  //   setName(name);
+  //   setImage(image);
+  // }, []);
 
   const handleAddPlaceSubmit = (e) => {
     e.preventDefault();
-    onAddPlaceSubmit(name, image);
+    onAddPlaceSubmit({ name, link: image });
   };
 
   const handleNameChange = (evt) => {
@@ -59,7 +59,6 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit }) {
         />
         <span id="image-input-error"></span>
       </PopupWithForm>
-      ;
     </>
   );
 }

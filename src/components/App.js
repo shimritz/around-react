@@ -168,11 +168,12 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function handleSubmit(card) {
+  function handleAddPlaceSubmit(card) {
     api
       .createCard(card)
       .then((newCard) => {
         setCards([newCard, ...cards]);
+        closeAllPopups();
       })
       .catch((err) => console.log(err));
   }
@@ -193,7 +194,7 @@ function App() {
           card={selectedCard}
           isOpen={isPreviewImageOpen}
           onClose={closeAllPopups}
-        ></ImagePopup>
+        />
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
@@ -208,7 +209,7 @@ function App() {
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-          onAddPlaceSubmit={handleSubmit}
+          onAddPlaceSubmit={handleAddPlaceSubmit}
         />
         <section className="photos">
           {cards.map((card) => {
@@ -216,7 +217,7 @@ function App() {
               <Card
                 {...card}
                 key={card._id}
-                // onCardClick={onCardClick}
+                onCardClick={handleCardClick}
                 // onTrashBinClick={onTrashBinClick}
                 onCardLike={handleCardLike}
                 onCardDelete={handleCardDelete}
