@@ -6,10 +6,12 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit }) {
   const [name, setName] = React.useState("");
   const [image, setImage] = React.useState("");
 
-  // React.useEffect(() => {
-  //   setName(name);
-  //   setImage(image);
-  // }, []);
+  React.useEffect(() => {
+    if (isOpen) {
+      setName("");
+      setImage("");
+    }
+  }, [isOpen]);
 
   const handleAddPlaceSubmit = (e) => {
     e.preventDefault();
@@ -25,41 +27,39 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit }) {
   };
 
   return (
-    <>
-      <PopupWithForm
-        name="addNewCard"
-        title="New Place"
-        isOpen={isOpen}
-        onClose={onClose}
-        buttonText={"Create"}
-        onSubmit={handleAddPlaceSubmit}
-      >
-        <input
-          id="title-input"
-          className="form__input form__input_type_name"
-          type="text"
-          name="title"
-          placeholder="Title"
-          required
-          minLength="1"
-          maxLength="30"
-          value={name}
-          onChange={handleNameChange}
-        />
-        <span id="title-input-error"></span>
-        <input
-          id="image-input"
-          className="form__input form__input_type_image"
-          type="url"
-          name="image"
-          placeholder="Image URL"
-          required
-          value={image}
-          onChange={handleImageChange}
-        />
-        <span id="image-input-error"></span>
-      </PopupWithForm>
-    </>
+    <PopupWithForm
+      name="addNewCard"
+      title="New Place"
+      isOpen={isOpen}
+      onClose={onClose}
+      buttonText={"Create"}
+      onSubmit={handleAddPlaceSubmit}
+    >
+      <input
+        id="title-input"
+        className="form__input form__input_type_name"
+        type="text"
+        name="title"
+        placeholder="Title"
+        required
+        minLength="1"
+        maxLength="30"
+        value={name}
+        onChange={handleNameChange}
+      />
+      <span id="title-input-error"></span>
+      <input
+        id="image-input"
+        className="form__input form__input_type_image"
+        type="url"
+        name="image"
+        placeholder="Image URL"
+        required
+        value={image}
+        onChange={handleImageChange}
+      />
+      <span id="image-input-error"></span>
+    </PopupWithForm>
   );
 }
 export default AddPlacePopup;

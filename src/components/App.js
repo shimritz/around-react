@@ -58,13 +58,6 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  // function handleCardLike(card) {
-  //    const isLiked = card.likes.some((user) => user._id === currentUser._id);
-  //  api.addLike(card._id)
-  //  .then()
-  //   // setIsLiked(true);
-  // }
-
   const handleCardClick = (card) => {
     setIsPreviewImageOpen(true);
     setSelectedCard({
@@ -82,12 +75,11 @@ function App() {
   }
 
   const handleUpdateUser = (name, about) => {
-    console.log("name", name, "about", about);
-
     api
       .editProfile(name, about)
       .then((res) => {
         setCurrentUser({
+          _id: res._id,
           name: res.name,
           aboutMe: res.about,
           avatar: res.avatar,
@@ -103,6 +95,7 @@ function App() {
       .editAvatar(avatar)
       .then((res) => {
         setCurrentUser({
+          _id: res._id,
           name: res.name,
           aboutMe: res.about,
           avatar: res.avatar,
@@ -111,17 +104,6 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
-
-  // React.useEffect(() => {
-  //   api
-  //     .getUserInfo()
-  //     .then((res) => {
-  //       setUserName(res.name);
-  //       setUserDescription(res.aboutMe);
-  //       setUserAvatar(res.avatar);
-  //     })
-  //     .catch((error) => console.log(error));
-  // }, []);
 
   React.useEffect(() => {
     api
@@ -135,29 +117,21 @@ function App() {
   function handleCardLike(card) {
     // Check one more time if this card was already liked
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
-    console.log("currentUser", currentUser);
 
-    console.log("cards before->", cards);
     // Send a request to the API and getting the updated card data
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        console.log("newcard", newCard);
         setCards((state) =>
           state.map((currentCard) =>
             currentCard._id === card._id ? newCard : currentCard
           )
         );
-
-        console.log("cards after->", cards);
       })
       .catch((err) => console.log(err));
-
-    console.log("isLiked", isLiked);
   }
 
   function handleCardDelete(id) {
-    console.log("handleCardDelete", id);
     api
       .deleteCard(id)
       .then(() => {
@@ -212,18 +186,17 @@ function App() {
           onAddPlaceSubmit={handleAddPlaceSubmit}
         />
         <section className="photos">
-          {cards.map((card) => {
-            return (
-              <Card
-                {...card}
-                key={card._id}
-                onCardClick={handleCardClick}
-                // onTrashBinClick={onTrashBinClick}
-                onCardLike={handleCardLike}
-                onCardDelete={handleCardDelete}
-              />
-            );
-          })}
+          {cards.map((card) => (
+            <Card
+              {...card}
+              key={card._id}
+              onCardClick={handleCardClick}
+              // onTrashBinClick={onTrashBinClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
+            />
+          ))}
+          ;
         </section>
         <Footer />
       </CurrentUserContext.Provider>

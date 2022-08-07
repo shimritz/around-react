@@ -54,7 +54,7 @@ function Card({
         className={cardDeleteButtonClassName}
         aria-label="delete button"
         onClick={handleDeleteClick}
-      ></button>
+      />
       <div className="card__footer">
         <h2 className="card__name">{name}</h2>
         <div className="card__likes">
