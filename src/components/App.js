@@ -11,6 +11,7 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import Card from "./Card";
 import AddPlacePopup from "./AddPlacePopup";
+import DeleteCardPopup from "./DeleteCardPopup";
 
 function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
@@ -18,6 +19,7 @@ function App() {
     React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
+  const [isDeletePopupOpen, setIsDeletePopupOpen] = React.useState(false);
   const [isPreviewImageOpen, setIsPreviewImageOpen] = React.useState(false);
 
   const [selectedCard, setSelectedCard] = React.useState({
@@ -56,6 +58,10 @@ function App() {
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
+  }
+
+  function handleTrashBinClick() {
+    setIsDeletePopupOpen(true);
   }
 
   const handleCardClick = (card) => {
@@ -180,6 +186,11 @@ function App() {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
         />
+        <DeleteCardPopup
+          isOpen={isDeletePopupOpen}
+          onClose={closeAllPopups}
+          onSubmit={handleCardDelete}
+        />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
@@ -191,9 +202,10 @@ function App() {
               {...card}
               key={card._id}
               onCardClick={handleCardClick}
-              // onTrashBinClick={onTrashBinClick}
+              // onTrashBinClick={handleTrashBinClick}
               onCardLike={handleCardLike}
               onCardDelete={handleCardDelete}
+              onTrashBinClick={handleTrashBinClick}
             />
           ))}
           ;
